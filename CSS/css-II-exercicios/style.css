@@ -1,0 +1,59 @@
+header{
+    text-align: center;
+    border-bottom: 1px solid black;
+    height: 10vh;
+  }
+header h3{
+  text-align: left;
+  font-size: 1.6em;
+}
+  
+  main{
+    height: 90vh;    
+    text-align: justify; 
+    margin-left: auto;
+    margin-right: auto;
+  }
+  section{    
+    margin: 3em 7em;    
+  }
+
+  p{
+    font-size: 1.6em;
+  }
+  
+  aside{
+    
+    width: 230px;
+    border: 1px solid black; 
+    float: right;
+    margin-top: 3.3em;
+    text-align: center;
+
+  }
+  aside:active{
+    background-color: black;
+    color: white;
+  }
+  button:hover{
+    background-color: #000;
+    color:#fff ;
+  }
+   
+  footer{
+    font-size: 1.6em;
+    height: 1vh;
+    bottom: 0;
+    background-color: black;
+    color: white;   
+    padding: 1em;
+  }
+  
+  button{
+    background: color #999;;
+    color: #000;
+    font-family: serif;
+  }
+  
+
+  

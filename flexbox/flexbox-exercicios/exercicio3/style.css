@@ -1,0 +1,57 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+header{
+  background-color: black;
+  height: 32vh;
+}
+
+footer{
+  background-color: black;
+  height: 31vh;
+}
+
+main{
+  display: flex;
+  gap: 25px;
+  padding: 19px; 
+  height: 30vh;
+  margin: 0 auto;
+  background-color: orange;
+}
+
+section{
+  height: 30vh;
+  background-color: steelblue;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 80px;
+}
+
+#section-1{  
+  order: 7;
+}
+
+#section-2{
+  flex-grow: .8;
+  order: 8;  
+}
+
+#section-3{
+  flex-grow: 0.7;
+  order: 9;
+}
+
+#section-4{
+  flex-basis: 200px;
+  order: 10;
+}
+
+#section-5{
+  flex-grow: .2;
+  order: 6;
+}
