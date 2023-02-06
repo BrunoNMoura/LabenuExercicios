@@ -1,0 +1,30 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;  
+}
+
+.App ul{
+  list-style: none; 
+}
+
+.Header{
+  background-color: aquamarine;
+  display: flex;
+  padding: 2%;
+}
+
+.Header img{
+  width: 15%;  
+}
+
+.Footer{
+  background-color: lightslategray;
+  text-align: center;
+  padding: 1%;
+}
+
+.RedeSociais{
+  display: flex;  
+  justify-content: center;  
+  gap: 2%;
+}

@@ -1,0 +1,8 @@
+.App {
+  font-family: sans-serif;
+}
+
+.conteinerApp{
+  display: flex;
+  gap: 5%;
+}
