@@ -1,38 +1,41 @@
-import React, { useState } from 'react'
-import {Card, PokemonName, PokemonType, EvolveButton} from './styles'
+import React from "react";
+import { Card, PokemonName, PokemonType, EvolveButton } from "./styles";
 
-const PokemonCard = ({pokemon, setpokemon}) => {
-  const {color, image, name, type} = pokemon;
+const PokemonCard = ({ pokemon, setPokemon }) => {
+  const { color, image, name, type } = pokemon;
 
   const evoluirPokemon = () => {
-    if(name === "pichu"){
+    if (name === "Pichu") {
       const evolucao = {
         ...pokemon,
-        nome:"Pikachu",
+        name: "Pikachu",
         evolved: true,
-        image:     "https://archives.bulbagarden.net/media/upload/4/4a/0025Pikachu.png"
+        image:
+          "https://archives.bulbagarden.net/media/upload/4/4a/0025Pikachu.png"
       };
-      setpokemon(evolucao);
+      setPokemon(evolucao);
     }
 
-    if (name === "Bulbasauro"){
+    if (name === "Bulbasauro") {
       const evolucao = {
         ...pokemon,
-        nome: "Ivysaur",
+        name: "Ivysaur",
         evolved: true,
-        imge:"https://uploaddeimagens.com.br/images/004/330/007/original/Venusaur.png?1675549816"
+        image:
+          "https://uploaddeimagens.com.br/images/004/330/007/original/Venusaur.png?1675549816"
       };
-      setpokemon(evolucao);
+      setPokemon(evolucao);
     }
   };
 
   return (
     <Card color={color}>
-        <img src={image} alt={`Pokemon`}/>
-        <PokemonName>{name}</PokemonName>
-        <PokemonType>{type}</PokemonType>
-        <p>{}kg</p>
-        <EvolveButton onClick={() => evoluirPokemon()}>Evoluir!</EvolveButton>
+      <img src={image} alt={`Pokemon`} />
+      <PokemonName>{name}</PokemonName>
+      <PokemonType>{type}</PokemonType>
+      <p>{}kg</p>
+
+      <EvolveButton onClick={() => evoluirPokemon()}>Evoluir!</EvolveButton>
     </Card>
   );
 };
