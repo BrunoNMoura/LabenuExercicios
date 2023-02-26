@@ -10,19 +10,16 @@ const PokemonCard = ({ pokemon, setPokemon }) => {
         ...pokemon,
         name: "Pikachu",
         evolved: true,
-        image:
-          "https://archives.bulbagarden.net/media/upload/4/4a/0025Pikachu.png"
+        image:"https://archives.bulbagarden.net/media/upload/4/4a/0025Pikachu.png"
       };
       setPokemon(evolucao);
     }
-
     if (name === "Bulbasauro") {
       const evolucao = {
         ...pokemon,
         name: "Ivysaur",
         evolved: true,
-        image:
-          "https://uploaddeimagens.com.br/images/004/330/007/original/Venusaur.png?1675549816"
+        image:"https://uploaddeimagens.com.br/images/004/330/007/original/Venusaur.png?1675549816"
       };
       setPokemon(evolucao);
     }
@@ -34,7 +31,6 @@ const PokemonCard = ({ pokemon, setPokemon }) => {
       <PokemonName>{name}</PokemonName>
       <PokemonType>{type}</PokemonType>
       <p>{}kg</p>
-
       <EvolveButton onClick={() => evoluirPokemon()}>Evoluir!</EvolveButton>
     </Card>
   );
