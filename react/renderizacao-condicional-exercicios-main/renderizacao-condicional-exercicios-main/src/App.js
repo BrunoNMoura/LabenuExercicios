@@ -39,8 +39,11 @@ function App() {
 
   return (
     <MainContainer >
-      <GlobalStyled />
-      {renderizaTela()}
+      <GlobalStyled />      
+      {valorCondicional===1&&<TelaLogin mudarTela={mudarTela}/>}
+      {valorCondicional===2&&<TelaCadastro mudarTela={mudarTela}/>}
+      {valorCondicional===3&&<TelaUsuarioCadastrado/>}
+      {valorCondicional===4&&<TelaCadastroEndereco mudarTela={mudarTela}/>}
     </MainContainer>
   );
 }

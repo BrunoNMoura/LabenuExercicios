@@ -21,7 +21,8 @@ function TelaCadastroEndereco(props) {
           Telefone:
           <Input type="Number" id="telefone" />
         </StyledLabel>
-        <SendButton onClick={() => props.mudarTela(3)}>Próxima página</SendButton>        
+        <SendButton onClick={() => props.mudarTela(3)}
+        >Enviar Cadastro</SendButton>        
       </Form>
     </FormContainer>
   );
