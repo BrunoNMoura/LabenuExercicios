@@ -1,0 +1,83 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+header {
+  height: 8vh;
+  background-color: aquamarine;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.LoadingAnimate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 200px;
+}
+
+.ContainerChar {
+  width: 1000px;
+  height: 480px;
+  padding: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  margin-top: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  background-color: lightgrey;
+}
+
+.BoxChar {
+  width: 240px;
+  height: 230px;
+  border: 1px solid rgba(0, 10, 10, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 12px;
+  background-color: #fff;
+}
+.BoxChar img {
+  height: 60%;
+}
+
+.BoxChar img:hover {
+  cursor: pointer;
+}
+
+.TitleChar {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.DetailsChar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 520px;
+  position: absolute;
+  right: 10px;
+  top: 79px;
+  border: 1px dotted rgba(0, 0, 0, 0.2);
+  background-color: seashell;
+  border-radius: 12px 0 12px 12px;
+}
+
+.BtnClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.BtnClose:hover {
+  cursor: pointer;
+}
