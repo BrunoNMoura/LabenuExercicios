@@ -1,5 +1,5 @@
 import Router from "./routes/Router"
-import { MainContainer } from "./style"
+import { MainContainer } from "./styles"
 
 function App() {
   return (

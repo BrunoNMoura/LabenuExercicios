@@ -1,5 +1,5 @@
 import { goToHome, goToLogin, goToProfile } from "../routes/Cordinator";
-import { StyledHeader, StyledButton } from "../style"
+import { StyledHeader, StyledButton } from "../styles"
 import { useNavigate } from "react-router-dom"
 
 function Header() {

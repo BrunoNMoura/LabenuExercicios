@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import { MainContainer } from "../style";
+import Header from "../components/Headers";
+import { MainContainer } from "../styles";
 
 function ProfilePage() {
   return (
