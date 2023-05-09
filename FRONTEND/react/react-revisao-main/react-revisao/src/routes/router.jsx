@@ -19,7 +19,7 @@ export const Router = () => {
          setIsLoggedIn={setIsLoggedIn}
          />
             <Routes>               
-                <Route path='/login' element={<LoginPage 
+                <Route path='/' element={<LoginPage 
                 setIsLoggedIn={setIsLoggedIn}
                 />} />
                 <Route path='/signup' element={<SignupPage />} />

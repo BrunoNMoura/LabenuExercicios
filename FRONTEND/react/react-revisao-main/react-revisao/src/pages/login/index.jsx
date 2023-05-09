@@ -32,9 +32,7 @@ export const LoginPage = ({setIsLoggedIn}) => {
         setIsLoggedIn(true)
         } catch (error) {
             console.log(error.response)
-        }
-
-         
+        }         
     }
 
     return (
