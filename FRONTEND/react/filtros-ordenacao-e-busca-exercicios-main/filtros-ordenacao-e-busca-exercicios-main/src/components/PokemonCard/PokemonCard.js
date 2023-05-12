@@ -18,7 +18,7 @@ const PokemonCard = (props) => {
         <p>Detalhes</p>
       </div>
       <div>
-        <Pokemon src={`https://www.serebii.net/swordshield/pokemon/${props.pokemon.id}.png`} alt="" />
+      <Pokemon src={`https://www.serebii.net/swordshield/pokemon/${props.pokemon.id}.png`} alt="" />
         <CatchButton>Capturar!</CatchButton>
       </div>
       <Pokeball src={pokeball} alt="pokeball" />
