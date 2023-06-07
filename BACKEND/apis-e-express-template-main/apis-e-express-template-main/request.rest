@@ -1,0 +1,12 @@
+###get test de API
+
+GET  http://localhost:3003/
+
+###get all courses
+
+GET  http://localhost:3003/courses
+
+###get all students
+
+GET  http://localhost:3003/students
+
