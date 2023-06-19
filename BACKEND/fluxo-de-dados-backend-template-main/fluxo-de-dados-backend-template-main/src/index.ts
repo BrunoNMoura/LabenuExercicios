@@ -73,8 +73,8 @@ app.put("/accounts/:id", (req: Request, res: Response) => {
   try {
     const id = req.params.id;
 
-    const newId = req.body.id as string | undefined;
-    const newOwnerName = req.body.ownerName as string | undefined;
+    const newId = req.body.id 
+    const newOwnerName = req.body.ownerName 
     const newBalance = req.body.balance;
     const newType = req.body.type;
 
@@ -119,7 +119,7 @@ app.put("/accounts/:id", (req: Request, res: Response) => {
 
     if (newOwnerName !== undefined) {
       if (typeof newOwnerName !== "string") {
-        res.status(400);
+        res.status(422);
         throw new Error(
           "O ownerName deve ser uma string"
         );
