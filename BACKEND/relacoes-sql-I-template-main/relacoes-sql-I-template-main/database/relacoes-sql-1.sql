@@ -6,7 +6,7 @@ DROP TABLE phones;
 
 DROP TABLE users;
 
-CREATE TABLE
+CREATE TABLE IF NOT EXISTS
     users (
         id TEXT PRIMARY KEY UNIQUE NOT NULL,
         name TEXT NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE
         password TEXT NOT NULL
     );
 
-CREATE TABLE
+CREATE TABLE IF NOT EXISTS
     phones (
         id TEXT PRIMARY KEY UNIQUE NOT NULL,
         phone_number TEXT UNIQUE NOT NULL,
@@ -68,14 +68,14 @@ SELECT * FROM users INNER JOIN phones ON phones.user_id = users.id;
 
 -- pratica três
 
-CREATE TABLE
+CREATE TABLE IF NOT EXISTS
     licenses (
         id TEXT PRIMARY KEY UNIQUE NOT NULL,
         resgister_number TEXT UNIQUE NOT NULL,
         category TEXT NOT NULL
     );
 
-CREATE TABLE
+CREATE TABLE IF NOT EXISTS
     drives (
         id TEXT PRIMARY KEY UNIQUE NOT NULL,
         name TEXT NOT NULL,
@@ -125,11 +125,11 @@ FROM licenses
 -- exercício de fixação
 
 
-DROP TABLE posts;
+DROP TABLE licenses;
 
 DROP TABLE clients;
 
-CREATE TABLE
+CREATE TABLE IF NOT EXISTS
     clients (
         id TEXT PRIMARY KEY UNIQUE NOT NULL,
         name TEXT NOT NULL,
@@ -137,7 +137,7 @@ CREATE TABLE
         password TEXT NOT NULL
     );
 
-CREATE TABLE
+CREATE TABLE IF NOT EXISTS
     posts (
         id TEXT PRIMARY KEY UNIQUE NOT NULL,
         post TEXT UNIQUE NOT NULL,
