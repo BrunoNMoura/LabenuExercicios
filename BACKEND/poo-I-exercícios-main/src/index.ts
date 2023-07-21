@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { db } from "./database/knex";
 import { TVideo } from "./types";
 import { Video } from "./models/Video";
+import { VideoDatabase } from "./database/VideoDatabase";
 
 const app = express();
 
@@ -32,6 +32,7 @@ app.get("/ping", async (req: Request, res: Response) => {
 });
 
 app.get("/videos", async (req: Request, res: Response) => {
+  const videoDatabase = new VideoDatabase();
   try {
     const videoId = req.query.id;
     if (videoId !== undefined) {
@@ -46,12 +47,14 @@ app.get("/videos", async (req: Request, res: Response) => {
       if (videoId.length < 4) {
         throw new Error("The 'id' must be at least four characters long");
       }
-      const [idVideo] = await db("videos").where({ id: videoId });
+
+      const idVideo = await videoDatabase.findVideoById(videoId);
+
       if (idVideo) {
         res.status(200).send(idVideo);
       }
     }
-    const allVideos: TVideo[] = await db("videos");
+    const allVideos: TVideo[] = await videoDatabase.findVideos();
 
     const result = allVideos.map((video) => {
       return new Video(
@@ -98,6 +101,7 @@ app.post("/videos", async (req: Request, res: Response) => {
     }
 
     //check name
+
     if (title === undefined || title === "") {
       res.status(400);
       throw new Error("put a name in the string");
@@ -124,7 +128,9 @@ app.post("/videos", async (req: Request, res: Response) => {
 
     //check only id
 
-    const [videoId] = await db("videos").where({ id: id });
+    // const [videoId] = await db("videos").where({ id: id });
+    const videoDatabase = new VideoDatabase();
+    const videoId: TVideo | undefined = await videoDatabase.findVideoById(id);
     if (videoId) {
       res.status(400);
       throw new Error("The given ID already exists");
@@ -132,21 +138,16 @@ app.post("/videos", async (req: Request, res: Response) => {
 
     const newVideo: Video = new Video(id, title, time_seconds);
 
-    await db("videos").insert({
+    const newVideoDB: TVideo = {
       id: newVideo.getId(),
       title: newVideo.getTitle(),
       time_seconds: newVideo.getTimeSeconds(),
       created_at: newVideo.getCreatedAt(),
-    });
+    };
 
-    const [idVideo]: TVideo[] = await db("videos").where({ id });
+    //await db("videos").insert(newVideoDB);
 
-    // const result = new Video(
-    //   idVideo.id,
-    //   idVideo.title,
-    //   idVideo.time_seconds,
-    //   idVideo.created_at
-    // )
+    await videoDatabase.createdVideo(newVideoDB);
 
     res.status(201).send("Video registration successfully completed!");
   } catch (error) {
@@ -218,7 +219,13 @@ app.put("/videos/:id", async (req: Request, res: Response) => {
       throw new Error("Time_secunds must be greater than zero");
     }
 
-    const [videoDB]: TVideo[] = await db("videos").where({ id: idToEdidt });
+    // const [videoDB]: TVideo[] = await
+
+    const videoDatabase = new VideoDatabase();
+
+    const videoDB: TVideo | undefined = await videoDatabase.findVideoById(
+      idToEdidt
+    );
 
     if (!videoDB) {
       res.status(400);
@@ -231,15 +238,15 @@ app.put("/videos/:id", async (req: Request, res: Response) => {
       newTimeSeconds || videoDB.time_seconds,
       videoDB.created_at
     );
-  
-    await db("videos")
-      .update({
-        id: video.getId(),
-        title: video.getTitle(),
-        time_seconds: video.getTimeSeconds(),
-        created_at: video.getCreatedAt(),
-      })
-      .where({ id: idToEdidt });
+
+    const putVideoDB: TVideo = {
+      id: video.getId(),
+      title: video.getTitle(),
+      time_seconds: video.getTimeSeconds(),
+      created_at: video.getCreatedAt(),
+    };
+
+    await videoDatabase.updateVideo( putVideoDB);
 
     res.status(200).send("Video changed successfully!");
   } catch (error) {
@@ -267,19 +274,24 @@ app.delete("/videos/:id", async (req: Request, res: Response) => {
       throw new Error("The 'id' must be at least four characters long");
     }
 
-    const [videoDB] = await db("videos").where({ id: idToDelete });
+    // const [videoDB] = await db("videos").where({ id: idToDelete });
+    
+    const videoDatabase = new VideoDatabase();
+    const videoDB = await videoDatabase.findVideoById(idToDelete);
+
     if (!videoDB) {
       res.status(400);
       throw new Error("User not found!");
     }
+    // const video = new Video(
+    //   videoDB.id,
+    //   videoDB.title,
+    //   videoDB.time_seconds,
+    //   videoDB.created_at
+    // );
+    //await db("videos").del().where({ id: video.getId() });
+    await videoDatabase.deleteVideo(idToDelete);
 
-    const video = new Video(
-      videoDB.id,
-      videoDB.title,
-      videoDB.time_seconds,
-      videoDB.created_at
-    );
-    await db("videos").del().where({ id: video.getId() });
     res.status(200).send("User deleted successfully!");
   } catch (error) {
     if (res.statusCode === 200) {
