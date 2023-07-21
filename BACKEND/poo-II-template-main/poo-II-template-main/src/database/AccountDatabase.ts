@@ -11,9 +11,9 @@ export class AccountDatabase extends BaseDatabase {
   }
 
   public async findAccountById(
-    id: string | undefined
+    id: string 
   ): Promise<TAccountDB | undefined> {
-    const [accountDB]: TAccountDB[] | undefined[] =
+    const [accountDB]: TAccountDB[] =
       await BaseDatabase.connection(AccountDatabase.TABLE_ACCOUNTS).where({
         id,
       });
@@ -24,6 +24,7 @@ export class AccountDatabase extends BaseDatabase {
     await BaseDatabase.connection(AccountDatabase.TABLE_ACCOUNTS).insert(
       newAccountDB
     );
+    
   }
 
   public async updateAccount(
