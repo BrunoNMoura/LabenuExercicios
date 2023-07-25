@@ -5,7 +5,7 @@ import { UserDB } from "../types"
 
 export class UserController{
     //metodos(construtor, get,set)
-    getUsers = async (req: Request, res: Response) => {
+    getUsers = async (req: Request, res: Response):Promise<void> => {
         try {
             const q = req.query.q as string | undefined
     
@@ -35,7 +35,7 @@ export class UserController{
             }
         }
     }
-    createdUser = async (req: Request, res: Response) => {
+    createdUser = async (req: Request, res: Response):Promise<void> => {
         try {
             const { id, name, email, password } = req.body
     

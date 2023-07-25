@@ -4,7 +4,7 @@ import { AccountDatabase } from "../database/AccountDatabase"
 import { Account } from "../models/Account"
 
 export class AccountController{
-    getAccounts = async (req: Request, res: Response) => {
+    getAccounts = async (req: Request, res: Response):Promise<void> => {
         try {
             const accountDatabase = new AccountDatabase()
             const accountsDB: AccountDB[] = await accountDatabase.findAccounts()
@@ -31,7 +31,7 @@ export class AccountController{
             }
         }
     }
-    getAccountById = async (req: Request, res: Response) => {
+    getAccountById = async (req: Request, res: Response):Promise<void> => {
         try {
             const id = req.params.id
     
@@ -67,7 +67,7 @@ export class AccountController{
             }
         }
     }
-    createdAccount = async (req: Request, res: Response) => {
+    createdAccount = async (req: Request, res: Response):Promise<void> => {
         try {
             const { id, ownerId } = req.body
     
@@ -120,7 +120,7 @@ export class AccountController{
             }
         }
     }
-    updateAccount = async (req: Request, res: Response) => {
+    updateAccount = async (req: Request, res: Response):Promise<void> => {
         try {
             const id = req.params.id
             const value = req.body.value

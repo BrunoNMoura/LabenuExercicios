@@ -2,32 +2,30 @@ import { AccountDB } from "../types";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class AccountDatabase extends BaseDatabase {
-    public static TABLE_ACCOUNTS = "accounts"
+    TABLE_NAME = "accounts"
 
     public async findAccounts() {
         const accountsDB: AccountDB[] = await BaseDatabase
-            .connection(AccountDatabase.TABLE_ACCOUNTS)
+            .connection(this.TABLE_NAME)
 
         return accountsDB
     }
 
     public async findAccountById(id: string) {
-        const [ accountDB ]: AccountDB[] | undefined[] = await BaseDatabase
-            .connection(AccountDatabase.TABLE_ACCOUNTS)
-            .where({ id })
+        const [ accountDB ]: AccountDB[] | undefined[] = await super.findById(id)
 
         return accountDB
     }
 
     public async insertAccount(newAccountDB: AccountDB) {
         await BaseDatabase
-            .connection(AccountDatabase.TABLE_ACCOUNTS)
+            .connection(this.TABLE_NAME)
             .insert(newAccountDB)
     }
 
     public async updateBalanceById(id: string, newBalance: number) {
         await BaseDatabase
-            .connection(AccountDatabase.TABLE_ACCOUNTS)
+            .connection(this.TABLE_NAME)
             .update({ balance: newBalance })
             .where({ id })
     }
