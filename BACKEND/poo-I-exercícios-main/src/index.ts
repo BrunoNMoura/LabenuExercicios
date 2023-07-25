@@ -171,52 +171,46 @@ app.put("/videos/:id", async (req: Request, res: Response) => {
     const newTimeSeconds = req.body.time_seconds;
 
     //check id
-    if (newId === undefined || newId === "") {
-      res.status(400);
-      throw new Error("put ID in the string");
+    if (newId) {
+      if (typeof newId !== "string") {
+        res.status(422);
+        throw new Error("The 'id' must be a string");
+      }
+      if (newId[0] !== "v") {
+        res.status(400);
+        throw new Error("Id must start with character 'v'");
+      }
+      if (newId.length < 4) {
+        res.status(400);
+        throw new Error("The 'id' must be at least four characters long");
+      }
     }
-    if (typeof newId !== "string") {
-      res.status(422);
-      throw new Error("The 'id' must be a string");
-    }
-    if (newId[0] !== "v") {
-      res.status(400);
-      throw new Error("Id must start with character 'v'");
-    }
-    if (newId.length < 4) {
-      res.status(400);
-      throw new Error("The 'id' must be at least four characters long");
-    }
+
     //check title
 
-    if (newTitle === undefined || newTitle === "") {
-      res.status(400);
-      throw new Error("put a title in the string");
-    }
-    if (typeof newTitle !== "string") {
-      res.status(422);
-      throw new Error("The 'title' must be a string");
-    }
-    if (newTitle.length < 3) {
-      res.status(400);
-      throw new Error("The 'title' must be at least three characters long");
+    if (newTitle) {
+      if (typeof newTitle !== "string") {
+        res.status(422);
+        throw new Error("The 'title' must be a string");
+      }
+      if (newTitle.length < 3) {
+        res.status(400);
+        throw new Error("The 'title' must be at least three characters long");
+      }
     }
 
     //check time_secunds
 
-    if (newTimeSeconds === undefined || newTimeSeconds === "") {
-      res.status(400);
-      throw new Error("put a number");
-    }
+    if (newTimeSeconds) {
+      if (typeof newTimeSeconds !== "number") {
+        res.status(422);
+        throw new Error("The time_secunds must be a number");
+      }
 
-    if (typeof newTimeSeconds !== "number") {
-      res.status(422);
-      throw new Error("The time_secunds must be a number");
-    }
-
-    if (newTimeSeconds <= 0) {
-      res.status(400);
-      throw new Error("Time_secunds must be greater than zero");
+      if (newTimeSeconds <= 0) {
+        res.status(400);
+        throw new Error("Time_secunds must be greater than zero");
+      }
     }
 
     // const [videoDB]: TVideo[] = await
@@ -246,7 +240,7 @@ app.put("/videos/:id", async (req: Request, res: Response) => {
       created_at: video.getCreatedAt(),
     };
 
-    await videoDatabase.updateVideo( putVideoDB);
+    await videoDatabase.updateVideo(putVideoDB);
 
     res.status(200).send("Video changed successfully!");
   } catch (error) {
@@ -275,7 +269,7 @@ app.delete("/videos/:id", async (req: Request, res: Response) => {
     }
 
     // const [videoDB] = await db("videos").where({ id: idToDelete });
-    
+
     const videoDatabase = new VideoDatabase();
     const videoDB = await videoDatabase.findVideoById(idToDelete);
 
