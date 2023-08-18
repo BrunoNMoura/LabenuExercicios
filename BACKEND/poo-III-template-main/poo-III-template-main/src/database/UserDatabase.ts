@@ -4,7 +4,7 @@ import { BaseDatabase } from "./BaseDatabase";
 export class UserDatabase extends BaseDatabase {
     TABLE_NAME = "users"
 
-    public async findUsers(q: string | undefined) {
+    public async findUsers(q: string | undefined):Promise<UserDB[]> {
         let usersDB
 
         if (q) {
