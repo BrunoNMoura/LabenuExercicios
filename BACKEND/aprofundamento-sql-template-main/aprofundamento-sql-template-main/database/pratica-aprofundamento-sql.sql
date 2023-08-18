@@ -152,7 +152,7 @@ SELECT
 FROM pokemons
 GROUP BY "type";
 
-SELECT * FROM pokemons LIMIT 3 OFFSET 4;
+SELECT * FROM pokemons LIMIT 3 OFFSET 3;
 
 SELECT * FROM pokemons
 WHERE "type" = 'fire' OR "type" = 'grass'
